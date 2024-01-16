@@ -1,6 +1,6 @@
 #Script para segunda pre-entrega
 
-
+from datetime import datetime
 import pandas as pd
 import psycopg2
 from psycopg2 import sql
@@ -48,6 +48,9 @@ def obtener_datos():
 
 datos_seleccionados = obtener_datos()
 if datos_seleccionados:
+    fecha_actual = datetime.now().date()
+    for dato in datos_seleccionados:
+        dato['fecha'] = fecha_actual
     df = pd.DataFrame(datos_seleccionados)
 else:
     df = pd.DataFrame() 
@@ -86,8 +89,8 @@ if not df.empty:
 
 if not df.empty:
     insert_query = sql.SQL('''
-    INSERT INTO nahuelraffaini_coderhouse.coinscryptosnr (symbol, name, marketCap, price, change, "24hVolume") 
-    VALUES (%s, %s, %s, %s, %s, %s)
+    INSERT INTO nahuelraffaini_coderhouse.coinscryptosnr (symbol, name, marketCap, price, change, "24hVolume", fecha) 
+    VALUES (%s, %s, %s, %s, %s, %s, %s)
     ''')
     data_values = df.values.tolist()
     cur.executemany(insert_query, data_values)

@@ -5,4 +5,5 @@ CREATE TABLE Cryptos (
     price DECIMAL(18, 2),
     change DECIMAL(18, 2),
     24hVolume DECIMAL(18, 2)
+    fecha  DATE NOT NULL,
 );
