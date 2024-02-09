@@ -1,0 +1,9 @@
+{
+    "alertas": {
+        "BTC": {
+            "limite_subida": 7,
+            "limite_bajada": -7,
+            "mensaje": "Alerta Bitcoin: El precio ha {accion} un {cambio}% alcanzando {precio_actual}. Detalles: {url_detalle}"
+        }
+    }
+}
